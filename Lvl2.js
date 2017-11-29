@@ -1,24 +1,4 @@
-
-var game = new Phaser.Game(1200,1200, Phaser.CANVAS, "game");
-
-var menuState  = {
-    preload:function(){
-    game.load.image('titlescreen',"Assets/Assets_MainMenu/background_2.jpg");
-    game.load.image('button',"Assets/Assets_MainMenu/button.png");
-        
-    },
-    create:function(){
-        game.state.add('MM',game.MainMenu);
-        this.game.state.start('MM');
-    },
-
-    update:function(){
-        
-    },
-};
-
-
-var mainState = {
+ var Lvl2 = {
     
     preload:function(){
         game.load.spritesheet('player','Assets/player(final).png', 40, 40);
@@ -71,7 +51,7 @@ var mainState = {
             'x 	                     ooo x',
             'x 	                         x',
             'x 	                ooo      x',
-			'x 		       ooo           x',
+			'x 		       oo            x',
 			'x 	 ooo  	                 x',
 			'x		                     x',
 			'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
@@ -92,8 +72,7 @@ var mainState = {
                 ground.body.immovable = true;
             }else if (level[i][j] == 'v'){
 				var door = game.add.sprite(40+40*j, 40+42*i, 'door');
-                this.door.add(door)
-                game.physics.arcade.enable(door);
+				this.door.add(door);
                 door.body.immovable = true;
             }else if (level[i][j] == 'e'){
 				var enemy = game.add.sprite(40+40*j, 40+40*i, 'enemy');
@@ -106,12 +85,15 @@ var mainState = {
 			}//if-else
 		}//inner-for
 	}//outer-for
+    function nextLvl(){
+        game.state.start("Lvl2");
+    };
  }, //create
 
     update:function(){
         game.physics.arcade.collide(this.player,this.border);
         game.physics.arcade.collide(this.player,this.ground);
-        game.physics.arcade.overlap(this.player,this.door, this.Lvl2_, null, this);
+        game.physics.arcade.overlap(this.player,this.door, this.nextLvl, null, this);
         	
 		if(this.cursor.left.isDown){
 			this.player.body.velocity.x = -300;
@@ -130,28 +112,4 @@ var mainState = {
     },//update
 };
 
-
-
-var postState  = {
-    preload:function(){
-    game.load.image('background2',"Assets/Assets_Splash/background_4.jpg");
-    game.load.image('button',"Assets/Assets_splash/background_button.svg");
-        
-    },
-    create:function(){
-        game.state.add('PS',game.PS);
-        this.game.state.start('PS');
-    },
-
-    update:function(){
-        
-    },
-};
-
-
-game.state.add('main',mainState);
-game.state.add('menu',menuState);
-game.state.add('PS', postState);
-game.state.add('Lvl2', Lvl2);
-game.state.start('menu');  
 

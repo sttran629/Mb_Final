@@ -1,16 +1,21 @@
-game.MainMenu = function(game){
+game.PS = function(game){
     
 };
 
 var titlescreen;
 
-    game.MainMenu.prototype = {
+    game.PS.prototype = {
         
     create:function(game){
         
-        this.createButton(game,"Start",game.world.centerX,game.world.centerY  -175, 250, 100,
+        this.createButton(game,"Replay",game.world.centerX,game.world.centerY  -175, 250, 100,
         function(){
-            this.state.start('main');
+            this.state.start('mainState');
+        }),
+            
+        this.createButton(game,"Main Menu",game.world.centerX,game.world.centerY  -175, 250, 100,
+        function(){
+            this.state.start('MM');
         }),
         
         titlescreen = game.add.sprite(game.world.centerX,game.world.centerY - 200, 'titlescreen')
@@ -36,4 +41,3 @@ var titlescreen;
         txt.anchor.setTo(0.5, 0.5);
         },
 };
-
