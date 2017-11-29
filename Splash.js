@@ -41,3 +41,27 @@ var titlescreen;
         txt.anchor.setTo(0.5, 0.5);
         },
 };
+
+
+
+
+
+var postState  = {
+    preload:function(){
+    game.load.image('background2',"Assets/Assets_Splash/background_4.jpg");
+    game.load.image('button',"Assets/Assets_splash/background_button.svg");
+        
+    },
+    create:function(){
+        game.state.add('PS',game.PS);
+        game.state.start('PS');
+    },
+
+    update:function(){
+        
+    },
+};
+
+function Lvl2_start(){
+    game.state.start('Lvl2_2');
+};

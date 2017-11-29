@@ -111,7 +111,7 @@ var mainState = {
     update:function(){
         game.physics.arcade.collide(this.player,this.border);
         game.physics.arcade.collide(this.player,this.ground);
-        game.physics.arcade.overlap(this.player,this.door, this.Lvl2_, null, this);
+        this.game.physics.arcade.overlap(this.player,this.door, this.Lvl2_start, null, this);
         	
 		if(this.cursor.left.isDown){
 			this.player.body.velocity.x = -300;
@@ -131,27 +131,19 @@ var mainState = {
 };
 
 
-
-var postState  = {
-    preload:function(){
-    game.load.image('background2',"Assets/Assets_Splash/background_4.jpg");
-    game.load.image('button',"Assets/Assets_splash/background_button.svg");
-        
-    },
+var Lv2State = {
+    preload:function(){},
+    
     create:function(){
-        game.state.add('PS',game.PS);
-        this.game.state.start('PS');
+        game.state.add('Lvl2',game.Lvl2);
+        game.state.start('Lvl2');
     },
-
-    update:function(){
-        
-    },
+    update:function(){},
 };
-
 
 game.state.add('main',mainState);
 game.state.add('menu',menuState);
-game.state.add('PS', postState);
-game.state.add('Lvl2', Lvl2);
+game.state.add('Lvl2_2',Lv2State);
 game.state.start('menu');  
 
+//ask help for the Main Menu issues and linking Lv2 

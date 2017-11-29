@@ -1,4 +1,4 @@
- var Lvl2 = {
+game.Lvl2 = {
     
     preload:function(){
         game.load.spritesheet('player','Assets/player(final).png', 40, 40);
