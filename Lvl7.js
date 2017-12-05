@@ -1,4 +1,4 @@
-game.Lvl2 = {
+game.Lvl7 = {
     
     preload:function(){
         game.load.spritesheet('player','Assets/player(final).png', 40, 40);
@@ -24,7 +24,6 @@ game.Lvl2 = {
         this.ground = game.add.group();
         this.door = game.add.group();
         this.enemy = game.add.group();
-        this.enemySprite = game.add.group();
         this.lightning = game.add.group();
         this.end = game.add.group();
         
@@ -38,7 +37,7 @@ game.Lvl2 = {
 		
 		var level = [
 			'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-			'x 	                         x',
+			'x 	     t              e    x',
             'x 	                         x',
             'x 	                         x',
             'x 	                         x',
@@ -47,8 +46,8 @@ game.Lvl2 = {
             'x 	                      v  x',
             'x 	                     ooo x',
             'x 	                         x',
-            'x 	                o        x',
-			'x 	         oo              x',
+            'x 	                ooo      x',
+			'x 	         ooo             x',
 			'x 	 ooo  	                 x',
 			'x		                     x',
 			'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
@@ -110,7 +109,7 @@ game.Lvl2 = {
     update:function(){
         game.physics.arcade.collide(this.player,this.border);
         game.physics.arcade.collide(this.player,this.ground);
-        game.physics.arcade.overlap(this.player,this.door, this.Lvl3_link, null, this);
+        game.physics.arcade.overlap(this.player,this.door, this.Lvl8_link, null, this);
         game.physics.arcade.overlap(this.player,this.enemy,this.splash,null, this);
         game.physics.arcade.overlap(this.player,this.lightning,this.splash,null,this);
         
@@ -142,8 +141,8 @@ game.Lvl2 = {
         }//end if
     },//update
     
-Lvl3_link: function (){
-game.state.start('Lvl3_3');
+Lvl8_link: function (){
+game.state.start('Lvl8_8');
 },
     
 splash:function(){
@@ -151,24 +150,24 @@ splash:function(){
 },
 disappear_lightning: function (){
         this.lightning.visible = false;
-        this.lightning.enableBody = false;
+        this.lightning.body.enable = false;
         game.time.events.add(Phaser.Timer.SECOND * 2 ,this.appear_lightning,this)
  },
 appear_lightning: function (){
     this.lightning.visible = true;
-    this.lightning.enableBody = true;
+    this.lightning.body.enable = true;
     
     game.time.events.add(Phaser.Timer.SECOND * 1 ,this.disappear_lightning,this)
 },
 };
 
 
-var Lv3State = {
+var Lv8State = {
     preload:function(){},
     
     create:function(){
-        game.state.add('Lvl3',game.Lvl3);
-        game.state.start('Lvl3');
+        game.state.add('Lvl8',game.Lvl8);
+        game.state.start('Lvl8');
     },
     update:function(){},
 };
@@ -176,9 +175,6 @@ var Lv3State = {
 
 game.state.add('main',mainState);
 game.state.add('menu',menuState);
-game.state.add('Lvl3_3',Lv3State);
+game.state.add('Lvl8_8',Lv8State);
 game.state.add('PS',postState);
 game.state.start('menu');  
-
-
-
