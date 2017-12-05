@@ -167,12 +167,12 @@ splash:function(){
 },
 disappear_lightning: function (){
         this.lightning.visible = false;
-    this.lightning.bodyEnable = false;
-        game.time.events.add(Phaser.Timer.SECOND * 6 ,this.appear_lightning,this)
+    this.lightning.body.enable = false;
+        game.time.events.add(Phaser.Timer.SECOND * 3 ,this.appear_lightning,this)
  },
 appear_lightning: function (){
     this.lightning.visible = true;
-    this.lightning.bodyEnable = true;
+    this.lightning.body.enable = true;
     
     game.time.events.add(Phaser.Timer.SECOND * 1 ,this.disappear_lightning,this)
 },
