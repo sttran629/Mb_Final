@@ -26,6 +26,7 @@ game.Lvl5 = {
         this.enemy = game.add.group();
         this.lightning = game.add.group();
         this.end = game.add.group();
+        this.isLightning = true;
         
         this.player = game.add.sprite(100,550,'player');
         this.player.animations.add('going_left',[0, 1, 2, 3, 4, 5, 6, 7],12, true);
@@ -37,13 +38,13 @@ game.Lvl5 = {
 		
 		var level = [
 			'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-			'x 	    t             e       x',
-            'x 	         oo               x',
-            'x 	        o     o       v  x',
+			'x 	    t             e      x',
+            'x 	         oo              x',
+            'x 	        o     o    u  v  x',
             'x 	  oo                oooo x',
             'x 	                         x',
             'x 	        ooo              x',
-            'x 	            ooo          x',
+            'x 	            ooo   u      x',
             'x 	                     ooo x',
             'x 	                         x',
             'x 	               ooo       x',
@@ -111,7 +112,9 @@ game.Lvl5 = {
         game.physics.arcade.collide(this.player,this.ground);
         game.physics.arcade.overlap(this.player,this.door, this.Lvl6_link, null, this);
         game.physics.arcade.overlap(this.player,this.enemy,this.splash,null, this);
+        if(this.isLightning){
         game.physics.arcade.overlap(this.player,this.lightning,this.splash,null,this);
+        }
         
          this.count++;
         if (this.count % 300 == 0) {
@@ -148,14 +151,15 @@ splash:function(){
     game.state.start('PS');
 },
 disappear_lightning: function (){
-        this.lightning.enableBody = false;
         this.lightning.visible = false;
-        game.time.events.add(Phaser.Timer.SECOND * 2 ,this.appear_lightning,this)
+    this.lightning.bodyEnable = false;
+    this.isLightning = false;
+        game.time.events.add(Phaser.Timer.SECOND * 2.5 ,this.appear_lightning,this)
  },
 appear_lightning: function (){
     this.lightning.visible = true;
-    this.lightning.enableBody = true;
-    
+    this.lightning.bodyEnable = true;
+    this.isLightning = true;
     game.time.events.add(Phaser.Timer.SECOND * 1 ,this.disappear_lightning,this)
 },
 };

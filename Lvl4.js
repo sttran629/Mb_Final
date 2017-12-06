@@ -26,6 +26,7 @@ game.Lvl4 = {
         this.enemy = game.add.group();
         this.lightning = game.add.group();
         this.end = game.add.group();
+        this.isLightning = true;
         
         this.player = game.add.sprite(100,550,'player');
         this.player.animations.add('going_left',[0, 1, 2, 3, 4, 5, 6, 7],12, true);
@@ -111,7 +112,9 @@ game.Lvl4 = {
         game.physics.arcade.collide(this.player,this.ground);
         game.physics.arcade.overlap(this.player,this.door, this.Lvl5_link, null, this);
         game.physics.arcade.overlap(this.player,this.enemy,this.splash,null, this);
+        if(this.isLightning){
         game.physics.arcade.overlap(this.player,this.lightning,this.splash,null,this);
+        }
         
        this.count++;
         if (this.count % 300 == 0) {
@@ -150,13 +153,14 @@ splash:function(){
 },
 disappear_lightning: function (){
         this.lightning.visible = false;
-        this.lightning.enableBody = false;
-        game.time.events.add(Phaser.Timer.SECOND * 2 ,this.appear_lightning,this)
+    this.lightning.bodyEnable = false;
+    this.isLightning = false;
+        game.time.events.add(Phaser.Timer.SECOND * 3 ,this.appear_lightning,this)
  },
 appear_lightning: function (){
     this.lightning.visible = true;
-    this.lightning.enableBody = true;
-    
+    this.lightning.bodyEnable = true;
+    this.isLightning = true;
     game.time.events.add(Phaser.Timer.SECOND * 1 ,this.disappear_lightning,this)
 },
 };

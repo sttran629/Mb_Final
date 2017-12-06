@@ -68,7 +68,7 @@ var mainState = {
             'x 	                         x',
             'x 	                      v  x',
             'x 	                     ooo x',
-            'x 	                 u       x',
+            'x 	                         x',
             'x 	                ooo      x',
 			'x 	         ooo             x',
 			'x 	 ooo  	                 x',
@@ -170,13 +170,13 @@ splash:function(){
 },
 disappear_lightning: function (){
         this.lightning.visible = false;
-//    this.lightning.body.enable = false;
+    this.lightning.bodyEnable = false;
     this.isLightning = false;
         game.time.events.add(Phaser.Timer.SECOND * 3 ,this.appear_lightning,this)
  },
 appear_lightning: function (){
     this.lightning.visible = true;
-//    this.lightning.body.enable = true;
+    this.lightning.bodyEnable = true;
     this.isLightning = true;
     game.time.events.add(Phaser.Timer.SECOND * 1 ,this.disappear_lightning,this)
 },
@@ -187,7 +187,7 @@ var Lv2State = {
     preload:function(){},
     
     create:function(){
-        game.state.add('Lvl2',game.Lvl2);
+        game.state.add('Lvl2',game.Lvl7);
         game.state.start('Lvl2');
     },
     update:function(){},
