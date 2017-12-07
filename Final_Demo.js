@@ -187,7 +187,7 @@ var Lv2State = {
     preload:function(){},
     
     create:function(){
-        game.state.add('Lvl2',game.Lvl3);
+        game.state.add('Lvl2',game.Lvl2);
         game.state.start('Lvl2');
     },
     update:function(){},
